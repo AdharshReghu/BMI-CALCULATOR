@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'carddata.dart';
 import 'reusable_card.dart';
-
-const bottomcontainercolor = Color(0xFFEB1555);
-const activecardcolor = Color(0xFF1D1E33);
-const inactivecardcolor = Color(0xFF111328);
-const bottomcontainerheght = 80.0;
+import 'constants.dart';
 
 enum GenderType { male, female }
+
+int height = 180;
 
 class InputPage extends StatefulWidget {
   @override
@@ -22,7 +20,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("BMI Calculator"),
+        title: Text("BMI Calculator"),
       ),
       body: Column(
         children: [
@@ -42,8 +40,8 @@ class _InputPageState extends State<InputPage> {
                         gendericons: FontAwesomeIcons.mars,
                       ),
                       colour: selectedgender == GenderType.male
-                          ? activecardcolor
-                          : inactivecardcolor,
+                          ? kActivecardcolor
+                          : kInactivecardcolor,
                     ),
                   ),
                 ),
@@ -60,8 +58,8 @@ class _InputPageState extends State<InputPage> {
                         gendericons: FontAwesomeIcons.venus,
                       ),
                       colour: selectedgender == GenderType.female
-                          ? activecardcolor
-                          : inactivecardcolor,
+                          ? kActivecardcolor
+                          : kInactivecardcolor,
                     ),
                   ),
                 ),
@@ -71,9 +69,42 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: ReusableCard(
               cardChild: Column(
-                children: const [],
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Height",
+                    style: kLabeltextstyle,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kBigNumbers,
+                      ),
+                      Text(
+                        "cm",
+                        style: kLabeltextstyle,
+                      )
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: 120,
+                    max: 220,
+                    activeColor: Color(0xFFEB1555),
+                    inactiveColor: Color(0xFF8D8E98),
+                    onChanged: (double newvalue) {
+                      setState(() {
+                        height = newvalue.toInt();
+                      });
+                    },
+                  )
+                ],
               ),
-              colour: activecardcolor,
+              colour: kActivecardcolor,
             ),
           ),
           Expanded(
@@ -84,7 +115,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       children: const [],
                     ),
-                    colour: activecardcolor,
+                    colour: kActivecardcolor,
                   ),
                 ),
                 Expanded(
@@ -92,15 +123,15 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       children: const [],
                     ),
-                    colour: activecardcolor,
+                    colour: kActivecardcolor,
                   ),
                 ),
               ],
             ),
           ),
           Container(
-            color: bottomcontainercolor,
-            height: bottomcontainerheght,
+            color: kBottomcontainercolor,
+            height: kBottomcontainerheght,
             width: double.infinity,
           )
         ],
