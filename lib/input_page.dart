@@ -211,7 +211,7 @@ class _InputPageState extends State<InputPage> {
                             FloatingActionButton(
                               onPressed: () {
                                 setState(() {
-                                  age++;
+                                  age--;
                                 });
                               },
                               backgroundColor: Color(
