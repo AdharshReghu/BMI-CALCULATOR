@@ -1,3 +1,4 @@
+import 'package:bmicalculator/Results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'carddata.dart';
@@ -22,7 +23,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("BMI Calculator"),
+        title: const Center(child: Text("BMI Calculator")),
       ),
       body: Column(
         children: [
@@ -73,7 +74,7 @@ class _InputPageState extends State<InputPage> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Height",
                     style: kLabeltextstyle,
                   ),
@@ -86,7 +87,7 @@ class _InputPageState extends State<InputPage> {
                         height.toString(),
                         style: kBigNumbers,
                       ),
-                      Text(
+                      const Text(
                         "cm",
                         style: kLabeltextstyle,
                       )
@@ -97,15 +98,15 @@ class _InputPageState extends State<InputPage> {
                         activeTrackColor: Colors.white,
                         thumbColor: const Color(0xffEB1555),
                         overlayColor: const Color(0x29EB1555),
-                        thumbShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                        overlayShape:
-                            RoundSliderThumbShape(enabledThumbRadius: 30.0)),
+                        thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 15.0),
+                        overlayShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 30.0)),
                     child: Slider(
                       value: height.toDouble(),
                       min: 120,
                       max: 220,
-                      inactiveColor: Color(0xFF8D8E98),
+                      inactiveColor: const Color(0xFF8D8E98),
                       onChanged: (double newvalue) {
                         setState(() {
                           height = newvalue.toInt();
@@ -126,7 +127,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "WEIGHT",
                           style: kLabeltextstyle,
                         ),
@@ -143,12 +144,12 @@ class _InputPageState extends State<InputPage> {
                                   weight++;
                                 });
                               },
-                              child: Icon(
+                              backgroundColor: const Color(
+                                0xFF4C4F5E,
+                              ),
+                              child: const Icon(
                                 FontAwesomeIcons.plus,
                                 color: Colors.white,
-                              ),
-                              backgroundColor: Color(
-                                0xFF4C4F5E,
                               ),
                             ),
                             const SizedBox(
@@ -160,10 +161,10 @@ class _InputPageState extends State<InputPage> {
                                   weight--;
                                 });
                               },
-                              backgroundColor: Color(
+                              backgroundColor: const Color(
                                 0xFF4C4F5E,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 FontAwesomeIcons.minus,
                                 color: Colors.white,
                               ),
@@ -180,7 +181,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "AGE",
                           style: kLabeltextstyle,
                         ),
@@ -192,20 +193,20 @@ class _InputPageState extends State<InputPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             FloatingActionButton(
-                              child: Icon(
-                                FontAwesomeIcons.plus,
-                                color: Colors.white,
-                              ),
                               onPressed: () {
                                 setState(() {
                                   age++;
                                 });
                               },
-                              backgroundColor: Color(
+                              backgroundColor: const Color(
                                 0xFF4C4F5E,
                               ),
+                              child: const Icon(
+                                FontAwesomeIcons.plus,
+                                color: Colors.white,
+                              ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             FloatingActionButton(
@@ -214,10 +215,10 @@ class _InputPageState extends State<InputPage> {
                                   age--;
                                 });
                               },
-                              backgroundColor: Color(
+                              backgroundColor: const Color(
                                 0xFF4C4F5E,
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 FontAwesomeIcons.minus,
                                 color: Colors.white,
                               ),
@@ -232,10 +233,22 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomcontainercolor,
-            height: kBottomcontainerheght,
-            width: double.infinity,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultsPage()));
+            },
+            child: Container(
+              color: kBottomcontainercolor,
+              height: kBottomcontainerheght,
+              width: double.infinity,
+              child: Center(
+                child: const Text(
+                  "CALCULATE",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           )
         ],
       ),
