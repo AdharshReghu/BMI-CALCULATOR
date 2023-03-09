@@ -7,6 +7,8 @@ import 'constants.dart';
 enum GenderType { male, female }
 
 int height = 180;
+int weight = 45;
+int age = 20;
 
 class InputPage extends StatefulWidget {
   @override
@@ -90,17 +92,26 @@ class _InputPageState extends State<InputPage> {
                       )
                     ],
                   ),
-                  Slider(
-                    value: height.toDouble(),
-                    min: 120,
-                    max: 220,
-                    activeColor: Color(0xFFEB1555),
-                    inactiveColor: Color(0xFF8D8E98),
-                    onChanged: (double newvalue) {
-                      setState(() {
-                        height = newvalue.toInt();
-                      });
-                    },
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                        activeTrackColor: Colors.white,
+                        thumbColor: const Color(0xffEB1555),
+                        overlayColor: const Color(0x29EB1555),
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                        overlayShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 30.0)),
+                    child: Slider(
+                      value: height.toDouble(),
+                      min: 120,
+                      max: 220,
+                      inactiveColor: Color(0xFF8D8E98),
+                      onChanged: (double newvalue) {
+                        setState(() {
+                          height = newvalue.toInt();
+                        });
+                      },
+                    ),
                   )
                 ],
               ),
@@ -113,7 +124,53 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     cardChild: Column(
-                      children: const [],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "WEIGHT",
+                          style: kLabeltextstyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kBigNumbers,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              child: Icon(
+                                FontAwesomeIcons.plus,
+                                color: Colors.white,
+                              ),
+                              backgroundColor: Color(
+                                0xFF4C4F5E,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                              backgroundColor: Color(
+                                0xFF4C4F5E,
+                              ),
+                              child: Icon(
+                                FontAwesomeIcons.minus,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
                     ),
                     colour: kActivecardcolor,
                   ),
@@ -121,7 +178,53 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     cardChild: Column(
-                      children: const [],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "AGE",
+                          style: kLabeltextstyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kBigNumbers,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            FloatingActionButton(
+                              child: Icon(
+                                FontAwesomeIcons.plus,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                              backgroundColor: Color(
+                                0xFF4C4F5E,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            FloatingActionButton(
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                              backgroundColor: Color(
+                                0xFF4C4F5E,
+                              ),
+                              child: Icon(
+                                FontAwesomeIcons.minus,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
                     ),
                     colour: kActivecardcolor,
                   ),
