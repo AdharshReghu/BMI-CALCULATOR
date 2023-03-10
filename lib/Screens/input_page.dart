@@ -1,9 +1,9 @@
-import 'package:bmicalculator/Results_page.dart';
+import 'package:bmicalculator/Screens/Results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'carddata.dart';
-import 'reusable_card.dart';
-import 'constants.dart';
+import '../Components/carddata.dart';
+import '../Components/reusable_card.dart';
+import '../Components/constants.dart';
 
 enum GenderType { male, female }
 
